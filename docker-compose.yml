@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  server:
+    build: ./server
+    ports:
+      - "5500:5500"
+    environment:
+      - SWAGGER_TITLE
+      - SWAGGER_DESCRIPTION
+      - BACKEND_APP_PORT
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://server:5500/gallery']
+      interval: 1s
+      timeout: 5s
+      retries: 60
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - matec-challange
+
+  client:
+    build: ./client
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_REACT_APP_API_URL
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://client:5173']
+      interval: 1s
+      timeout: 5s
+      retries: 60
+    depends_on:
+      - server
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - matec-challange
+
+networks:
+  matec-challange:
+    driver: bridge

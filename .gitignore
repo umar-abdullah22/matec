@@ -1,0 +1,13 @@
+server/.env
+client/.env
+client/node_modules
+server/node_modules
+node_modules
+server/dist
+client/dist
+client/package-lock.json
+.DS_Store
+server/package-lock.json
+
+# TypeScript cache
+server/*.tsbuildinfo
