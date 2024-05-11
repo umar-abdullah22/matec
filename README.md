@@ -40,43 +40,43 @@ docker-compose down
 ```
 If you prefer using Without Docker, then execute:
 
-# Navigate to the server directory from the project root
+### Navigate to the server directory from the project root
 ```bash
 cd server
 ```
-# Install dependencies
+### Install dependencies
 ```bash
 
 npm install
 ```
-# Start the server in production mode
+### Start the server in production mode
 ```bash
 
 npm start
 ```
-# For development mode with hot reloading
+### For development mode with hot reloading
 ```bash
 
 npm run start:dev
 ```
 
-# Open a new terminal and navigate to the client directory from the project root
+### Open a new terminal and navigate to the client directory from the project root
 ```bash
 
 cd client
 ```
-# Install dependencies
+### Install dependencies
 ```bash
 
 npm install
 ```
-# Start the client in development mode
+### Start the client in development mode
 ```bash
 
 npm run dev
 ```
 
-# OR From the project root directory, start both servers
+### OR From the project root directory, start both servers
 ```bash
 npm i
 npm start
