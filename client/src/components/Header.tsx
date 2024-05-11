@@ -15,7 +15,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ isMenuOpen, setIsMenuOpen, isDarkMode, toggleDarkMode }) => {
   return (
     <header className="bg-gray-800 dark:bg-gray-900 text-white px-4 py-3 flex justify-between items-center w-full">
-      <Link to="/" className="text-lg font-bold">Matec</Link>
+      <Link to="/" className="text-lg font-bold">Matec Gallery</Link>
       <div className="flex items-center space-x-4">
         <div className="hidden md:flex">
           <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Home</Link>
