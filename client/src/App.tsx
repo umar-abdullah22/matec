@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from './components/Home';
 import Upload from './components/Upload';
+import Error404 from './components/Error404';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,6 +48,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/upload" element={<Upload />} />
+          <Route path="/*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
     </>
