@@ -2,6 +2,7 @@ import EmptyGallery from '@assets/ghost.svg'
 import useGallery from '@hooks/useGallery';
 import ImageCard from './ImageCard';
 import Modal from './Modal';
+import ImageModal from './ImageModal';
 
 const Home = () => {
   const {
@@ -13,17 +14,19 @@ const Home = () => {
     openImageView,
     fetchImages,
     page,
-    hasMore
+    hasMore,
+    imageToView,
+    closeImageView
     } = useGallery();
     const loadMoreImages = () => {
         if (hasMore) {
             fetchImages(page + 1);
         }
     };
-
     return (
         <>
-            <div className="flex justify-center">
+        <div className="flex justify-center">
+          {imageToView && <ImageModal src={imageToView} alt="Zoomed Image" onClose={closeImageView} />}
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     {images && images.length === 0 ? (
                         <div className="flex flex-col items-center py-20">
