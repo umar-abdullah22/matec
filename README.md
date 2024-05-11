@@ -38,6 +38,8 @@ docker-compose up --build
 docker-compose down
 
 ```
+If you prefer using Without Docker, then execute:
+
 # Navigate to the server directory from the project root
 ```bash
 cd server
