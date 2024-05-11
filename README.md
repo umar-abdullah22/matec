@@ -82,3 +82,7 @@ npm run dev
 npm i
 npm start
 ```
+
+### Documentation of API's on Swagger 
+- http://localhost:5500/api
+
