@@ -3,9 +3,10 @@ import { useState, useEffect, useCallback } from 'react';
 
 const useGallery = () => {
   const { images, fetchImages, deleteImage, hasMore, page } = useImageStore();
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedImageId, setSelectedImageId] = useState('');
-  const [imageToView, setImageToView] = useState('');
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [selectedImageId, setSelectedImageId] = useState<string>('');
+  const [imageToView, setImageToView] = useState<string>('');
+
 
   useEffect(() => {
     if (images.length === 0) fetchImages();

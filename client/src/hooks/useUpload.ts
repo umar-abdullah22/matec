@@ -4,7 +4,7 @@ import { useState } from 'react';
 export const useUpload = () => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const { addImage } = useImageStore();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

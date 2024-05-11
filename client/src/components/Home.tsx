@@ -1,24 +1,20 @@
-import Modal from './Modal';
-import ImageModal from './ImageModal';
 import EmptyGallery from '@assets/ghost.svg'
 import useGallery from '@hooks/useGallery';
 import ImageCard from './ImageCard';
+import Modal from './Modal';
 
 const Home = () => {
-    const {
-        images,
-        isModalOpen,
-        imageToView,
-        handleDeleteClick,
-        handleCancel,
-        handleConfirmDelete,
-        openImageView,
-        closeImageView,
-        fetchImages,
-        page,
-        hasMore
+  const {
+    isModalOpen,
+    handleCancel,
+    handleConfirmDelete,
+    images,
+    handleDeleteClick,
+    openImageView,
+    fetchImages,
+    page,
+    hasMore
     } = useGallery();
-
     const loadMoreImages = () => {
         if (hasMore) {
             fetchImages(page + 1);
@@ -28,14 +24,6 @@ const Home = () => {
     return (
         <>
             <div className="flex justify-center">
-                {imageToView && <ImageModal src={imageToView} alt="Zoomed Image" onClose={closeImageView} />}
-                <Modal
-                    isOpen={isModalOpen}
-                    message="Are you sure you want to delete this image?"
-                    onCancel={handleCancel}
-                    onConfirm={handleConfirmDelete}
-                />
-
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     {images && images.length === 0 ? (
                         <div className="flex flex-col items-center py-20">
@@ -53,6 +41,12 @@ const Home = () => {
                                     onDeleteClick={handleDeleteClick}
                                 />
                             ))}
+                        <Modal
+                          isOpen={isModalOpen}
+                          message="Are you sure you want to delete this image?"
+                          onCancel={handleCancel}
+                          onConfirm={handleConfirmDelete}
+                      />
                         </div>
                     )}
                     {hasMore && (
