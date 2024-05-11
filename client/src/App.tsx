@@ -9,7 +9,6 @@ import { useLocalStorage } from 'react-use';
 const App: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useLocalStorage<boolean>('theme-dark-mode', true); // using this will automatically update the theme 
-  console.log(isMenuOpen)
     // Toggle function that updates both the state and the local storage
     const toggleDarkMode = () => {
       setIsDarkMode(!isDarkMode);
