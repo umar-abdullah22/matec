@@ -5,7 +5,7 @@ import { ImageState, PaginatedResponse } from '@type/gallery';
 const useImageStore = create<ImageState>((set, get) => ({
   images: [],
   page: 1,
-  hasMore: true,
+  hasMore: false,
 
   fetchImages: async (page = 1, limit = 3) => {
     try {
