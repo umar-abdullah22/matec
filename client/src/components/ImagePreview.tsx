@@ -12,7 +12,7 @@ const ImagePreview: React.FC<ImagePreviewProps> = ({ src, onRemove }) => {
       <button
         type="button"
         onClick={onRemove}
-        className="absolute top-0 right-0 bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-2 rounded-full"
+        className="absolute top-1 right-1 bg-red-600 hover:bg-red-800 text-white font-bold py-1 px-3 rounded-full"
         aria-label="Close"
       >
         &times;

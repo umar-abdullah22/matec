@@ -12,9 +12,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, message, onCancel, onConfirm }) =
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-4 rounded-lg shadow-lg">
-        <p className="text-center text-lg mb-4 text-black">{message}</p>
-        <div className="flex justify-around">
+      <div className="bg-gray-800 p-10 rounded-lg shadow-lg">
+        <p className="text-center text-lg mb-4 text-white">{message}</p>
+        <div className="flex justify-center gap-6">
           <button onClick={onCancel} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
             Cancel
           </button>

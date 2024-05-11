@@ -24,44 +24,44 @@ const Home = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      {imageToView && <ImageModal src={imageToView} alt="Zoomed Image" onClose={closeImageView} />}
-      <Modal 
-        isOpen={isModalOpen} 
-        message="Are you sure you want to delete this image?" 
-        onCancel={handleCancel} 
-        onConfirm={handleConfirmDelete}
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 max-w-6xl">
-        {images.map((image, index) => (
-          <div key={index} className="max-w-sm rounded overflow-hidden shadow-lg cursor-pointer">
-            <img
-              src={`data:image/jpeg;base64,${image.url}`}
-              alt={image.filename}
-              className="w-full"
-              onClick={() => openImageView(`data:image/jpeg;base64,${image.url}`)}
-            />
-            <div className="px-6 py-4 flex justify-between items-center">
-              <p className="text-xl font-bold">{image.filename}</p>
-              <button
-                onClick={(e) => { e.stopPropagation(); handleDeleteClick(image.id); }}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Delete
-              </button>
+    <>
+      <div className="flex justify-center">
+        {imageToView && <ImageModal src={imageToView} alt="Zoomed Image" onClose={closeImageView} />}
+        <Modal
+          isOpen={isModalOpen}
+          message="Are you sure you want to delete this image?"
+          onCancel={handleCancel}
+          onConfirm={handleConfirmDelete}
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-4 max-w-6xl">
+          {images.map((image, index) => (
+            <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <img className="rounded-t-lg w-96 h-96 object-contain" src={`data:image/jpeg;base64,${image.url}`} alt={image.filename} onClick={() => openImageView(`data:image/jpeg;base64,${image.url}`)} />
+              <div className="p-5">
+                <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{image.filename}</h5>
+                <div className='flex justify-end'>
+                  <button className="px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-700" onClick={(e) => { e.stopPropagation(); handleDeleteClick(image.id); }}>
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+
+          ))}
+
+        </div>
+      </div>
+      <div className='flex justify-center mt-4'>
         {hasMore && (
           <button
             onClick={loadMoreImages}
-            className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Load More
           </button>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
