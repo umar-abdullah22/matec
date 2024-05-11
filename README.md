@@ -76,6 +76,6 @@ npm run dev
 
 # OR From the project root directory, start both servers
 ```bash
-
+npm i
 npm start
 ```
