@@ -12,7 +12,7 @@ const Upload: React.FC = () => {
   } = useUpload();
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center border border-gray-200 items-center min-h-screen rounded-lg shadow-lg dark:border-gray-700 dark:shadow-neon-effect">
       <form onSubmit={handleUpload} className="w-full border border-gray-200 dark:border-gray-700 max-w-md p-4 bg-white dark:bg-gray-800 rounded shadow-md">
         {previewUrl && <ImagePreview src={previewUrl} onRemove={handleCancel} />}
         {!previewUrl && (

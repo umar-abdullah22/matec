@@ -2,7 +2,7 @@ import { Controller, Get, Post, Param, Delete, UploadedFile, UseInterceptors, Ht
 import { GalleryService } from './gallery.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiConsumes, ApiTags } from '@nestjs/swagger';
-import { CustomResponse, Image } from '@lib/types/gallery';
+import { CustomResponse, Image, PaginatedResponse } from '@lib/types/gallery';
 import { CreateImageDto } from '@lib/dtos';
 import { ErrorMessageEnums } from 'src/enums/image';
 import { SWAGGER_API_TAG } from 'src/enums/swagger';
@@ -13,7 +13,7 @@ export class GalleryController {
   constructor(private readonly galleryService: GalleryService) {}
 
   @Get()
-  getAllImages(@Query('page') page: number = 1, @Query('limit') limit: number = 10): Promise<Image[]> {
+  getAllImages(@Query('page') page: number = 1, @Query('limit') limit: number = 3): Promise<PaginatedResponse> {
     return this.galleryService.findAll(page, limit);
   }
 

@@ -1,28 +1,30 @@
 import { create } from 'zustand';
-import * as galleryApi from '@api/galleryApi';
-import { ImageState } from 'types/index';
+import * as galleryApi from '@services/rest-services/galleryApi';
+import { ImageState, PaginatedResponse } from '@type/gallery';
 
-const useImageStore = create<ImageState>((set) => ({
+const useImageStore = create<ImageState>((set, get) => ({
   images: [],
   page: 1,
   hasMore: true,
 
-  fetchImages: async (page = 1, limit = 10) => {
+  fetchImages: async (page = 1, limit = 3) => {
     try {
-      const images = await galleryApi.fetchImages();
+      const data: PaginatedResponse = await galleryApi.fetchImages(page, limit);
+      const { images, hasMore } = data
       set(state => ({
         images: page === 1 ? images : [...state.images, ...images],
         page,
-        hasMore: images.length === limit
-      }));    } catch (error) {
+        hasMore
+      }));
+    } catch (error) {
       console.error('Failed to fetch images:', error);
     }
   },
 
   addImage: async (newImage: FormData) => {
     try {
-      const { images } = await galleryApi.addImage(newImage);
-      set({ images });
+      await galleryApi.addImage(newImage);
+      get().fetchImages(1)
     } catch (error) {
       console.error('Failed to upload image:', error);
     }
@@ -30,8 +32,9 @@ const useImageStore = create<ImageState>((set) => ({
 
   deleteImage: async (id: string) => {
     try {
-      const { images } = await galleryApi.deleteImage(id);
-      set({ images });
+      await galleryApi.deleteImage(id);
+      get().fetchImages(1)
+
     } catch (error) {
       console.error('Failed to delete image:', error);
     }

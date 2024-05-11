@@ -6,6 +6,10 @@ export interface Image {
 }
   
 export interface CustomResponse {
-  images: Image[],
   message: string
+}
+
+export interface PaginatedResponse {
+  images: Image[],
+  hasMore: boolean
 }

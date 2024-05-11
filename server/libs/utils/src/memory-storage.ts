@@ -26,10 +26,8 @@ export class MemoryStorageService {
    * @param limit The maximum number of images per page.
    * @returns An array of images for the given page.
    */
-public getAllImages(page: number = 1, limit: number = 10): Image[] {
-  const startIndex = (page - 1) * limit;
-  const endIndex = startIndex + limit;
-  return Array.from(this.memoryStorage.values()).slice(startIndex, endIndex);
+public getAllImages(page: number = 1, limit: number = 3): Image[] {
+  return Array.from(this.memoryStorage.values()).slice(page, limit);
 }
 
   /**
@@ -51,4 +49,14 @@ public getAllImages(page: number = 1, limit: number = 10): Image[] {
     }
     this.memoryStorage.delete(id);
   }
+
+  public formatFilename(filename: string): string {
+    const maxDisplayLength = 20;
+    const extension = filename.slice(filename.lastIndexOf('.'));
+    if (filename.length > maxDisplayLength) {
+      return filename.substring(0, maxDisplayLength) + '...' + extension;
+    }
+    return filename;
+  }
+  
 }

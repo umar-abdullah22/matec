@@ -1,5 +1,5 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
-import { CustomResponse, Image } from '@lib/types/gallery';
+import { CustomResponse, Image, PaginatedResponse } from '@lib/types/gallery';
 import { ImageProcessingService, MemoryStorageService } from '@lib/utils';
 import { ErrorMessageEnums, SuccessMessageEnums } from 'src/enums/image';
 
@@ -24,14 +24,15 @@ export class GalleryService {
     }
 
     const compressedImageBuffer = await this.imageProcessingService.compressImage(file.buffer);
+    const formattedFileName = await this.storageService.formatFilename(file.originalname)
     const image: Image = {
-      filename: file.originalname,
+      filename: formattedFileName,
       url: compressedImageBuffer.toString('base64'),
     };
     const id = Date.now().toString();
     this.storageService.saveImage({ id, ...image });
-    const updatedImages = this.storageService.getAllImages();
-    return { images: updatedImages, message: SuccessMessageEnums.IMAGE_UPLOADED };  }
+    return { message: SuccessMessageEnums.IMAGE_UPLOADED };
+  }
 
   /**
    * Retrieves all stored images.
@@ -39,8 +40,16 @@ export class GalleryService {
    * @param page current page
    * @param limit number of images to retrieve
    */
-  async findAll(page: number, limit: number): Promise<Image[]> {
-    return this.storageService.getAllImages(page, limit);
+  async findAll(page: number, limit: number): Promise<PaginatedResponse> {
+    const offset = (page - 1) * limit;
+
+    // // Fetch one extra image to check for more
+    const images = this.storageService.getAllImages(offset, limit + 1);
+    const hasMore = images.length > limit;
+    return {
+      images: images.slice(0, limit), // Return only the requested number of images
+      hasMore
+    };
   }
 
   /**
@@ -55,7 +64,6 @@ export class GalleryService {
     }
     this.storageService.deleteImage(id);
      // Retrieve the updated list of images.
-    const updatedImages = this.storageService.getAllImages();
-    return { images: updatedImages, message: SuccessMessageEnums.IMAGE_DELETED };
+    return { message: SuccessMessageEnums.IMAGE_DELETED };
   }
 }

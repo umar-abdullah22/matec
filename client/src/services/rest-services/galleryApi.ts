@@ -1,9 +1,9 @@
-import axiosInstance, { handleError } from './axiosInstance';
+import axiosInstance, { handleError } from '../axiosInstance';
 import { toast } from 'react-toastify';
 
-export const fetchImages = async () => {
+export const fetchImages = async (page: number, limit: number) => {
   try {
-    const response = await axiosInstance.get('');
+    const response = await axiosInstance.get('', { params: { page, limit } });
     return response.data;
   } catch (error) {
     toast.error(handleError(error));
