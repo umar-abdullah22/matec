@@ -1,5 +1,5 @@
+import useImageStore from '@store/useImageStore';
 import { useState, useEffect, useCallback } from 'react';
-import useImageStore from '../store/useImageStore';
 
 const useGallery = () => {
   const { images, fetchImages, deleteImage, hasMore, page } = useImageStore();

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { ImageState } from '../types';
-import * as galleryApi from '../api/galleryApi';
+import * as galleryApi from '@api/galleryApi';
+import { ImageState } from 'types/index';
 
 const useImageStore = create<ImageState>((set) => ({
   images: [],

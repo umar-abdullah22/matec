@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HamburgerIcon from '../assets/hamburger.svg';
-import CrossIcon from '../assets/cross.svg'; 
-import MoonIcon from '../assets/moon.svg';
-import SunIcon from '../assets/sun.svg';
+import HamburgerIcon from '@assets/hamburger.svg';
+import CrossIcon from '@assets/cross.svg'
+import MoonIcon from '@assets/moon.svg';
+import SunIcon from '@assets/sun.svg';
 
 interface HeaderProps {
   isMenuOpen: boolean;

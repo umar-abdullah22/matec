@@ -1,5 +1,5 @@
+import useImageStore from '@store/useImageStore';
 import { useState } from 'react';
-import useImageStore from '../store/useImageStore';
 
 export const useUpload = () => {
   const [file, setFile] = useState<File | null>(null);

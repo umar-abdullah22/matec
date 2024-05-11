@@ -1,10 +1,10 @@
+import Header from '@components/Header';
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from './components/Header';
-import AppRouter from './router/AppRouter';
 import { useLocalStorage } from 'react-use';
+import AppRouter from 'router/AppRouter';
 
 const App: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -1,7 +1,7 @@
 import Modal from './Modal';
 import ImageModal from './ImageModal';
-import useGallery from '../hooks/useGallery';
-import EmptyGallery from '../assets/ghost.svg'
+import EmptyGallery from '@assets/ghost.svg'
+import useGallery from '@hooks/useGallery';
 
 const Home = () => {
   const {

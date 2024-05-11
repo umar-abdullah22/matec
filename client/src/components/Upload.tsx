@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUpload } from '../hooks/useUpload';
+import { useUpload } from '@hooks/useUpload';
 import ImagePreview from './ImagePreview';
 
 const Upload: React.FC = () => {

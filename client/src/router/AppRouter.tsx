@@ -1,8 +1,8 @@
+import Error404 from '@components/Error404';
+import Home from '@components/Home';
+import Upload from '@components/Upload';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../components/Home';
-import Upload from '../components/Upload';
-import Error404 from '../components/Error404';
 
 const AppRouter: React.FC = () => {
   return (
